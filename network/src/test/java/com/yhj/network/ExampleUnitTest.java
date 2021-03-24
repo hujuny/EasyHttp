@@ -1,4 +1,4 @@
-package com.yhj.easyhttp;
+package com.yhj.network;
 
 import org.junit.Test;
 

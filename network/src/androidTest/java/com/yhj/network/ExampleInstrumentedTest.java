@@ -1,4 +1,4 @@
-package com.yhj.easyhttp;
+package com.yhj.network;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.yhj.easyhttp", appContext.getPackageName());
+        assertEquals("com.yhj.network", appContext.getPackageName());
     }
 }

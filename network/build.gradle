@@ -1,16 +1,21 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.yhj.easyhttp"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments=["room.schemaLocation":"$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -20,9 +25,6 @@ android {
         }
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,9 +35,22 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation project(path: ':network')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //retrofit2
+    //要求java8+和android 5+
+    api deps.network.runtime
+    api deps.network.gson
+    api deps.network.logging
+    api deps.network.scalars
+    //内存泄漏
+    api deps.network.autodispose
+    //首选项
+    api deps.network.preference
+
+    implementation deps.network.room
+    annotationProcessor deps.network.room_compiler
 
 }
